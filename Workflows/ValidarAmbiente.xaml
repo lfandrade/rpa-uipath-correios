@@ -84,7 +84,7 @@
         <x:Boolean x:Key="IsPinned">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Declaração de variáveis globais" sap:VirtualizedContainerService.HintSize="487,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="Declaração de variáveis globais" sap:VirtualizedContainerService.HintSize="376,1083" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="out_diretorioDeTrabalho" />
       </Sequence.Variables>
@@ -739,7 +739,7 @@
               <x:Boolean x:Key="IsPinned">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows/ExtrairDados.xaml">
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows/ExtrairDados.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="in_diretorioDeLog">[diretorioDeLog]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_diretorioDeTrabalho">[diretorioDeTrabalho]</InArgument>
