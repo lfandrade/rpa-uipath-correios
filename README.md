@@ -39,7 +39,7 @@ Estrutura:
 LINHA 1:cep;diretorioDeTrabalho;portaEmail;servidorEmail;usuarioEmail;senhaEmail;destinatarioEmail;ccEmail;ccoEmail;
 ```
 
-Estrutura:
+Dados:
 
 ```sh
 LINHA 2: 29308;c:\ExtracaoDeDados;465;smtp.gmail.com;seuemail@gmail.com;suasenha;outro@gmail.com;maisumemail@gmail.com;aindapodeirmaisemail@gmail.com;
