@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>500,1291</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>500,842</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EnviarEmail_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -57,7 +57,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="EnviarEmail" sap:VirtualizedContainerService.HintSize="480,1231" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="EnviarEmail" sap:VirtualizedContainerService.HintSize="480,782" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="[in_arquivoGerado]" Name="arquivoGerado" />
       <Variable x:TypeArguments="x:String" Default="[in_diretorioDeLog]" Name="diretorioDeLog" />
@@ -93,16 +93,16 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,736" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,363" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="376,509" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence sap:VirtualizedContainerService.HintSize="376,681" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Default="luisfelipeandrade@gmail.com" Name="strEmailRemetente" />
             <Variable x:TypeArguments="x:String" Default="luisfelipeandrade@gmail.com" Name="strDestinatario" />
             <Variable x:TypeArguments="x:String" Name="strCC" />
             <Variable x:TypeArguments="x:String" Name="strCCO" />
-            <Variable x:TypeArguments="x:String" Name="strUsuarioEmail" />
-            <Variable x:TypeArguments="x:String" Name="strSenhaEmail" />
+            <Variable x:TypeArguments="x:String" Default="luisfelipeandrade@gmail.com" Name="strUsuarioEmail" />
+            <Variable x:TypeArguments="x:String" Default="flamengo@123" Name="strSenhaEmail" />
             <Variable x:TypeArguments="x:Int32" Default="465" Name="strPortaEmail" />
             <Variable x:TypeArguments="x:String" Default="smtp.gmail.com" Name="strServidorEmail" />
             <Variable x:TypeArguments="x:String" Name="arquivoEmail" />
@@ -126,23 +126,31 @@
               <OutArgument x:TypeArguments="x:String">[arquivoEmail]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[diretorioDeDados+arquivoGerado]</InArgument>
+              <InArgument x:TypeArguments="x:String">[arquivoGerado]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="Olá, segue em anexo dados extraidos do site do correios." DisplayName="Send SMTP Mail Message" Email="[strUsuarioEmail]" EnableSSL="True" From="[strEmailRemetente]" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="True" Name="[strNomeRemetente]" Password="[strSenhaEmail]" Port="[strPortaEmail]" SecureConnection="Auto" Server="[strServidorEmail]" Subject="[&quot;Arquivo: &quot;+arquivoGerado]" To="[strDestinatario]">
+          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="Olá, segue em anexo dados extraidos do site do correios." DisplayName="Envio de email com anexo" Email="[strUsuarioEmail]" EnableSSL="True" From="[strEmailRemetente]" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="True" Name="[strNomeRemetente]" Password="[strSenhaEmail]" Port="[strPortaEmail]" SecureConnection="Auto" Server="[strServidorEmail]" Subject="Dados extraidos do site do Correios" To="[strDestinatario]">
             <ui:SendMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                 <InArgument x:TypeArguments="x:String">[arquivoEmail]</InArgument>
               </scg:List>
             </ui:SendMail.Files>
           </ui:SendMail>
+          <ui:AppendLine DisplayName="Append Line" Encoding="[encodingText]" FileName="[diretorioDeLog+&quot;log-&quot;+Now.ToString(&quot;dd-MM-yyyy&quot;).ToString+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="AppendLine_4" Text="[System.DateTime.Now.ToString+&quot; - Finalizando envio do arquivo por email&quot;+arquivoGerado]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:AppendLine>
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,201" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -161,6 +169,16 @@
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
+      <TryCatch.Finally>
+        <ui:AppendLine DisplayName="Append Line" Encoding="[encodingText]" FileName="[diretorioDeLog+&quot;log-&quot;+Now.ToString(&quot;dd-MM-yyyy&quot;).ToString+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="AppendLine_5" Text="[System.DateTime.Now.ToString+&quot; - Programa finalizado&quot;]">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:AppendLine>
+      </TryCatch.Finally>
     </TryCatch>
   </Sequence>
 </Activity>

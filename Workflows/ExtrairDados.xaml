@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="ExtrairDados" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_diretorioDeTrabalho" Type="InArgument(x:String)" />
     <x:Property Name="in_diretorioDeDados" Type="InArgument(x:String)" />
     <x:Property Name="in_diretorioDeLog" Type="InArgument(x:String)" />
     <x:Property Name="in_arquivoGerado" Type="InArgument(x:String)" />
+    <x:Property Name="in_strConfigCep" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -66,7 +66,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Projeto: Extração de cep's com base em consulta no site do correrios&#xA;Classe: ExtrairDados&#xA;Escopo: Realizar o acesso ao site dos correios, realizar consulta de CEP com base no parâmetro informado e realizar a extração e geração dos dados em arquivo." DisplayName="ExtrairDados" sap:VirtualizedContainerService.HintSize="785,3183" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Projeto: Extração de cep's com base em consulta no site do correrios&#xA;Classe: ExtrairDados&#xA;Escopo: Realizar o acesso ao site dos correios, realizar consulta de CEP com base no parâmetro informado e realizar a extração e geração dos dados em arquivo." DisplayName="ExtrairDados" sap:VirtualizedContainerService.HintSize="785,3368" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" Name="retornoNavegador" />
       <Variable x:TypeArguments="x:Object" Default="[&quot; Abrindo navegador &quot;]" Name="msgAberturaDeNavegador" />
@@ -78,6 +78,7 @@
       <Variable x:TypeArguments="x:String" Default="[in_diretorioDeLog]" Name="diretorioDeLog" />
       <Variable x:TypeArguments="x:String" Default="[in_diretorioDeDados]" Name="diretorioDeDados" />
       <Variable x:TypeArguments="x:Int32" Name="numCepConsulta" />
+      <Variable x:TypeArguments="x:String" Default="[in_strConfigCep]" Name="strConfigCep" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -86,23 +87,18 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="743,51" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extraindo dados - &quot;+Now.ToString(&quot;dd-MM-yyyy hh:mm:ss&quot;)]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="743,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extraindo dados - &quot;+Now.ToString(&quot;dd-MM-yyyy hh:mm:ss&quot;)]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="743,51" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Informe o cep que deseja consultar:" Title="Extração de dados do Correios">
-      <ui:InputDialog.Result>
-        <OutArgument x:TypeArguments="x:String">[strCepConsulta]</OutArgument>
-      </ui:InputDialog.Result>
-    </ui:InputDialog>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="743,51" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="743,287" sap2010:WorkflowViewState.IdRef="TryCatch_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
@@ -111,7 +107,7 @@
             <OutArgument x:TypeArguments="x:Int32">[numCepConsulta]</OutArgument>
           </Assign.To>
           <Assign.Value>
-            <InArgument x:TypeArguments="x:Int32">[Integer.Parse(strCepConsulta.ToString.Trim)]</InArgument>
+            <InArgument x:TypeArguments="x:Int32">[Integer.Parse(strConfigCep.ToString.Trim)]</InArgument>
           </Assign.Value>
         </Assign>
       </TryCatch.Try>
@@ -192,7 +188,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:AppendLine>
-                  <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT'" sap:VirtualizedContainerService.HintSize="480,51" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[strCepConsulta]">
+                  <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT'" sap:VirtualizedContainerService.HintSize="480,51" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[strConfigCep]">
                     <ui:TypeInto.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="28ef9a221911fd99b2775668c7c4bfe3" Selector="&lt;webctrl name='relaxation' tag='INPUT' /&gt;">
                         <ui:Target.TimeoutMS>
@@ -298,7 +294,7 @@
                     <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="CloseTab_3" />
                     <ui:AppendLine DisplayName="Append Line" FileName="[diretorioDeLog+&quot;log-&quot;+Now.ToString(&quot;dd-MM-yyyy&quot;).ToString+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="AppendLine_6" Text="[System.DateTime.Now.ToString+&quot; - Fechando navegador&quot;]" />
                   </Sequence>
-                  <Sequence DisplayName="Gravando resultado da busca em arquivo" sap:VirtualizedContainerService.HintSize="480,1080" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <Sequence DisplayName="Gravando resultado da busca em arquivo" sap:VirtualizedContainerService.HintSize="480,1116" sap2010:WorkflowViewState.IdRef="Sequence_9">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -313,14 +309,14 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:AppendLine>
-                    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,897" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,933" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <TryCatch.Try>
-                        <Sequence sap:VirtualizedContainerService.HintSize="376,670" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                        <Sequence sap:VirtualizedContainerService.HintSize="376,706" sap2010:WorkflowViewState.IdRef="Sequence_10">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="nomeDoArquivo" />
                             <Variable x:TypeArguments="x:String" Name="arquivoGerado" />
@@ -337,7 +333,7 @@
                               <OutArgument x:TypeArguments="x:String">[arquivoGerado]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">[diretorioDeDados+"\Resultado-"+Now.ToString("dd-MM-yyyy hh-mm-ss")+".xlsx"]</InArgument>
+                              <InArgument x:TypeArguments="x:String">[diretorioDeDados+"Resultado-"+Now.ToString("dd-MM-yyyy--hh-mm-ss")+".xlsx"]</InArgument>
                             </Assign.Value>
                           </Assign>
                           <ui:WriteRange AddHeaders="True" DataTable="[dtResultado]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,115" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Resultado" StartingCell="A1" WorkbookPath="[arquivoGerado]">
