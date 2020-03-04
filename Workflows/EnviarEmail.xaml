@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="EnviarEmail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="EnviarEmail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_arquivoGerado" Type="InArgument(x:String)" />
     <x:Property Name="in_diretorioDeLog" Type="InArgument(x:String)" />
@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>396,515</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>500,1291</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EnviarEmail_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -57,7 +57,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="EnviarEmail" sap:VirtualizedContainerService.HintSize="376,455" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="EnviarEmail" sap:VirtualizedContainerService.HintSize="480,1231" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="[in_arquivoGerado]" Name="arquivoGerado" />
       <Variable x:TypeArguments="x:String" Default="[in_diretorioDeLog]" Name="diretorioDeLog" />
@@ -70,7 +70,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[arquivoGerado]</OutArgument>
       </Assign.To>
@@ -78,7 +78,7 @@
         <InArgument x:TypeArguments="x:String">[in_arquivoGerado]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:AppendLine DisplayName="Append Line" Encoding="[encodingText]" FileName="[diretorioDeLog+&quot;log-&quot;+Now.ToString(&quot;dd-MM-yyyy&quot;).ToString+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[System.DateTime.Now.ToString+&quot; - Recuperando arquivo &quot;+arquivoGerado]">
+    <ui:AppendLine DisplayName="Append Line" Encoding="[encodingText]" FileName="[diretorioDeLog+&quot;log-&quot;+Now.ToString(&quot;dd-MM-yyyy&quot;).ToString+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="438,132" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[System.DateTime.Now.ToString+&quot; - Recuperando arquivo &quot;+arquivoGerado]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -86,12 +86,81 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:AppendLine>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Arquivo gerado: &quot;+arquivoGerado+&quot; - &quot;+ Now.ToString(&quot;dd-MM-yyyy hh:mm:ss&quot;)]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="438,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Arquivo gerado: &quot;+arquivoGerado+&quot; - &quot;+ Now.ToString(&quot;dd-MM-yyyy hh:mm:ss&quot;)]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,736" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,509" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Default="luisfelipeandrade@gmail.com" Name="strEmailRemetente" />
+            <Variable x:TypeArguments="x:String" Default="luisfelipeandrade@gmail.com" Name="strDestinatario" />
+            <Variable x:TypeArguments="x:String" Name="strCC" />
+            <Variable x:TypeArguments="x:String" Name="strCCO" />
+            <Variable x:TypeArguments="x:String" Name="strUsuarioEmail" />
+            <Variable x:TypeArguments="x:String" Name="strSenhaEmail" />
+            <Variable x:TypeArguments="x:Int32" Default="465" Name="strPortaEmail" />
+            <Variable x:TypeArguments="x:String" Default="smtp.gmail.com" Name="strServidorEmail" />
+            <Variable x:TypeArguments="x:String" Name="arquivoEmail" />
+            <Variable x:TypeArguments="x:String" Default="Luis" Name="strNomeRemetente" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:AppendLine DisplayName="Append Line" Encoding="[encodingText]" FileName="[diretorioDeLog+&quot;log-&quot;+Now.ToString(&quot;dd-MM-yyyy&quot;).ToString+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[System.DateTime.Now.ToString+&quot; - Iniciando envio do arquivo por email&quot;+arquivoGerado]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:AppendLine>
+          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[arquivoEmail]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[diretorioDeDados+arquivoGerado]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="Olá, segue em anexo dados extraidos do site do correios." DisplayName="Send SMTP Mail Message" Email="[strUsuarioEmail]" EnableSSL="True" From="[strEmailRemetente]" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="True" Name="[strNomeRemetente]" Password="[strSenhaEmail]" Port="[strPortaEmail]" SecureConnection="Auto" Server="[strServidorEmail]" Subject="[&quot;Arquivo: &quot;+arquivoGerado]" To="[strDestinatario]">
+            <ui:SendMail.Files>
+              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                <InArgument x:TypeArguments="x:String">[arquivoEmail]</InArgument>
+              </scg:List>
+            </ui:SendMail.Files>
+          </ui:SendMail>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:AppendLine DisplayName="Append Line" Encoding="[encodingText]" FileName="[diretorioDeLog+&quot;log-&quot;+Now.ToString(&quot;dd-MM-yyyy&quot;).ToString+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="AppendLine_3" Text="[System.DateTime.Now.ToString+&quot; - Erro ao enviar email com o arquivo &quot;+arquivoGerado]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:AppendLine>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
   </Sequence>
 </Activity>
